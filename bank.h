@@ -9,14 +9,18 @@
 typedef class Bank
 {
 private:
-    std::map<int, BankAccount> database;
+    std::vector<int> accountIDs;
 
 public:
+    std::map<int, BankAccount> database;
+
     void addAccount();
 
     void showAccountDetails(int id);
 
     int generateAccountID();
+
+    int getRandomID();
 } Bank;
 
 #endif

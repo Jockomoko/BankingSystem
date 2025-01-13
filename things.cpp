@@ -36,7 +36,7 @@ typedef class Bank {
 
         void showAccountDetails();
         
-} Bank
+} Bank;
 
 
 #endif // THINGS_H
