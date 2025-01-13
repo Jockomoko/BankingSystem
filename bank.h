@@ -6,16 +6,17 @@
 #include <map>
 #include <iostream>
 
-typedef class Bank {
-    private:
-        std::map<int, BankAccount> database;
-    
-    public: 
-        void addAccount();
+typedef class Bank
+{
+private:
+    std::map<int, BankAccount> database;
 
-        void showAccountDetails();
+public:
+    void addAccount();
 
-        int generateAccountID();
+    void showAccountDetails(int id);
+
+    int generateAccountID();
 } Bank;
 
 #endif

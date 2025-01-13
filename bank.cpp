@@ -1,7 +1,6 @@
 #include "bank.h"
 #include "account.h"
 
-
 void Bank::addAccount()
 {
     int accountID = generateAccountID();
@@ -10,14 +9,20 @@ void Bank::addAccount()
     {
         accountID = generateAccountID();
     }
-    
+    Bank::database.insert({accountID, BankAccount(accountID)});
+    std::cout << "Accoint Id: " << accountID << " has been added to the Database" << std::endl;
 }
-
-void Bank::showAccountDetails()
+void Bank::showAccountDetails(int id)
 {
-
+    if (Bank::database.find(id) != database.end())
+    {
+        std::cout << "Couldnt finde the ID" << std::endl;
+    }
+    else
+    {
+        std::cout << "Kontrollerar saldo för konto " << id << ": " << Bank::database.at(id).getBalance() << std::endl;
+    }
 }
-
 int Bank::generateAccountID()
 {
     srand(time(0));
