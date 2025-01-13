@@ -1,21 +1,25 @@
 #include "account.h"
 
-int BankAccount::getNumber ()
+int BankAccount::getNumber()
 {
     return accountNumber;
 };
 
-void BankAccount::deposit (int input)
+void BankAccount::deposit(int input)
 {
-    balance =+ input;
+    balance = +input;
 }
 
-void BankAccount::withdraw (int input)
+void BankAccount::withdraw(int input)
 {
-    balance =- input;
+    balance = -input;
 }
 
-double BankAccount::getBalance ()
+double BankAccount::getBalance()
 {
     return balance;
+}
+BankAccount::BankAccount(int input)
+{
+    accountNumber = input;
 }

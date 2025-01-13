@@ -1,24 +1,22 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
-typedef class BankAccount {
-    private:
-        double balance;
-        int accountNumber;
+typedef class BankAccount
+{
+private:
+    double balance = 0.0;
+    int accountNumber;
 
-    public:
-        BankAccount (int input)
-        {
-            input = accountNumber;
-        };
+public:
+    BankAccount(int input) : accountNumber(input) {}
 
-        int getNumber ();
+    int getNumber();
 
-        void deposit (int input);
+    void deposit(int input);
 
-        void withdraw (int input);
+    void withdraw(int input);
 
-        double getBalance ();
+    double getBalance();
 
 } BankAccount;
 
