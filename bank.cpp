@@ -9,22 +9,22 @@ void Bank::addAccount()
     {
         accountID = generateAccountID();
     }
-    Bank::database.emplace(accountID, BankAccount(accountID));
+    Bank::database.emplace(accountID, BankAccount(accountID, Bank::generateAccountID()));
     Bank::accountIDs.push_back(accountID);
     std::cout << "Accoint Id: " << accountID << " has been added to the Database" << std::endl;
 }
 
-void Bank::showAccountDetails(int id)
-{
-    if (Bank::database.find(id) != database.end())
-    {
-        std::cout << "Couldnt finde the ID" << std::endl;
-    }
-    else
-    {
-        std::cout << "Kontrollerar saldo för konto " << id << ": " << Bank::database.at(id).getBalance() << std::endl;
-    }
-}
+// void Bank::showAccountDetails(int id)
+// {
+//     if (Bank::database.find(id) != database.end())
+//     {
+//         std::cout << "Couldnt find the ID: " << id << std::endl;
+//     }
+//     else
+//     {
+//         std::cout << "Kontrollerar saldo för konto " << id << ": " << Bank::database.at(id).getBalance() << std::endl;
+//     }
+// }
 
 int Bank::generateAccountID()
 {
