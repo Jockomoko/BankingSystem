@@ -1,4 +1,5 @@
 #include "account.h"
+#include <iostream>
 
 int BankAccount::getNumber()
 {
@@ -12,7 +13,19 @@ void BankAccount::deposit(int input)
 
 void BankAccount::withdraw(int input)
 {
-    balance = -input;
+    if(input > balance || balance == 0.0)
+    {
+        std::cout << "Tried to withdraw " << input << 
+                     "\nInsufficiant funds" << 
+                     "\nBalance: " << balance << std::endl;
+    }
+    else
+    {
+        balance = -input;
+
+        std::cout << "Withdrew " << input << 
+                     "\nNew balance: " << balance << std::endl;   
+    }
 }
 
 double BankAccount::getBalance()
