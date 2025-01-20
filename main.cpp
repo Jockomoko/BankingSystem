@@ -11,13 +11,14 @@ std::mutex mtx;
 
 void client(Bank input)
 {
-    std::lock_guard<std::mutex> lock(mtx);
     for (int i = 0; i < 3; i++)
     {
         srand(time(0));
         int id = input.getRandomID();
         int choice = 1 + rand() % 3;
         double yeag = (double)(rand() % 10000 / 10);
+        std::unique_lock<std::mutex> lock(mtx);
+        //lock.lock();
         std::cout << "Thread " << std::this_thread::get_id() << ": ";
         switch (choice)
         {
@@ -33,7 +34,9 @@ void client(Bank input)
             std::cout << "\nwithdrawing " << yeag << " from account " << id << std::endl;
             break;
         }
-        std::this_thread::sleep_for(2s);
+        lock.unlock();
+        int fuck = (500 + (rand() % 1500));
+        std::this_thread::sleep_for(fuck * 1ms);
     }
 }
 
