@@ -4,6 +4,7 @@
 #include "account.h"
 #include <random>
 #include <map>
+#include <vector>
 #include <iostream>
 
 typedef class Bank
