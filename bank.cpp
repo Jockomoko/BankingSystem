@@ -9,11 +9,10 @@ void Bank::addAccount()
     {
         accountID = generateAccountID();
     }
-    Bank::database.insert({accountID, BankAccount(accountID)});
+    Bank::database.emplace(accountID, BankAccount(accountID));
     Bank::accountIDs.push_back(accountID);
     std::cout << "Accoint Id: " << accountID << " has been added to the Database" << std::endl;
 }
-
 
 void Bank::showAccountDetails(int id)
 {
@@ -33,7 +32,7 @@ int Bank::generateAccountID()
     return 1 + rand() % 999;
 }
 
-int Bank::getRandomID() 
+int Bank::getRandomID()
 {
     int c = rand() % accountIDs.size();
     return accountIDs[c];
