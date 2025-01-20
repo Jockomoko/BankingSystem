@@ -13,7 +13,7 @@ void BankAccount::deposit(int input)
 
 void BankAccount::withdraw(int input)
 {
-    if(input > balance || balance == 0.0)
+    if(input > balance)
     {
         std::cout << "Tried to withdraw " << input << 
                      "\nInsufficiant funds" << 

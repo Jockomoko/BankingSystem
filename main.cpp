@@ -14,12 +14,13 @@ void client(Bank input)
     
     for (int i = 0; i < 3; i++)
     {
-        std::lock_guard<std::mutex> lock(mtx);
         srand(time(0));
+        std::this_thread::sleep_for((500 + (rand() % 2000)) * 1ms);
         int id = input.getRandomID();
         int choice = 1 + rand() % 3;
         double yeag = (double)((rand() % 10000) / 10);
         //std::cout << "\nThread " << std::this_thread::get_id() << ": \n" << std::endl;
+        std::unique_lock<std::mutex> lock(mtx);
         std::cout << "\n-===-Account " << id << "-===-\n";
         switch (choice)
         {
@@ -35,7 +36,7 @@ void client(Bank input)
             input.database[id].withdraw(yeag);
             break;
         }
-        std::this_thread::sleep_for(2s);
+        lock.unlock();
     }
 }
 
@@ -51,6 +52,7 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         threads.emplace_back(client, Nordea);
+        std::this_thread::sleep_for(1000ms);
     };
     for (auto &thread : threads)
     {
