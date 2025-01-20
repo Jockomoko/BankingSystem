@@ -8,8 +8,8 @@ private:
     int accountNumber;
 
 public:
-    BankAccount(int input) : accountNumber(input) {}
-
+    BankAccount() : accountNumber(0) {}
+    BankAccount(int &input) : accountNumber(input) {}
     int getNumber();
 
     void deposit(int input);

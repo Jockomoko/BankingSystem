@@ -19,7 +19,3 @@ double BankAccount::getBalance()
 {
     return balance;
 }
-BankAccount::BankAccount(int input)
-{
-    accountNumber = input;
-}
