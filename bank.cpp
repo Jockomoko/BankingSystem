@@ -11,7 +11,7 @@ void Bank::addAccount()
     }
     Bank::database.emplace(accountID, BankAccount(accountID, Bank::generateAccountID()));
     Bank::accountIDs.push_back(accountID);
-    std::cout << "Accoint Id: " << accountID << " has been added to the Database" << std::endl;
+    std::cout << "Account Id: " << accountID << " has been added to the Database with balance: " << Bank::database[accountID].getBalance() << std::endl;
 }
 
 // void Bank::showAccountDetails(int id)
@@ -28,7 +28,6 @@ void Bank::addAccount()
 
 int Bank::generateAccountID()
 {
-
     return 1 + rand() % 999;
 }
 
@@ -36,4 +35,9 @@ int Bank::getRandomID()
 {
     int c = rand() % accountIDs.size();
     return accountIDs[c];
+}
+
+std::vector<int> Bank::getAllAccountIds()
+{
+    return accountIDs;
 }

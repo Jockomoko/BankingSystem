@@ -22,6 +22,8 @@ public:
     int generateAccountID();
 
     int getRandomID();
+
+    std::vector<int> getAllAccountIds();
 } Bank;
 
 #endif

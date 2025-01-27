@@ -6,14 +6,15 @@ int BankAccount::getNumber()
     return accountNumber;
 };
 
-void BankAccount::deposit(int input)
+void BankAccount::deposit(double input)
 {
-    balance = +input;
+    balance =+ input;
+    setTotalDeposit(input);
 }
 
-void BankAccount::withdraw(int input)
+void BankAccount::withdraw(double input)
 {
-    if(input > balance || balance == 0.0)
+    if(input > balance)
     {
         std::cout << "Tried to withdraw " << input << 
                      "\nInsufficiant funds" << 
@@ -23,9 +24,29 @@ void BankAccount::withdraw(int input)
     {
         balance = -input;
 
+        setTotalWithdraw(input);
+
         std::cout << "Withdrew " << input << 
                      "\nNew balance: " << balance << std::endl;   
     }
+}
+
+void BankAccount::setTotalDeposit(double deposit)
+{
+    totalDeposit =+ deposit;
+}
+void BankAccount::setTotalWithdraw(double withdraw)
+{
+    totalWithdraw =+ withdraw;
+}
+
+void BankAccount::printAccountResults()
+{
+    std::cout << "\n-===-Account #" << accountNumber << "-===-" << std::endl;
+    std::cout << "Total withdraws: " << totalWithdraw << std::endl;
+    std::cout << "Total deposits: " << totalDeposit << std::endl;
+    std::cout << "Final balance: " << balance << std::endl;
+    std::cout << std::endl;
 }
 
 double BankAccount::getBalance()
