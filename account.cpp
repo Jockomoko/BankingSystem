@@ -6,12 +6,22 @@ int BankAccount::getNumber()
     return accountNumber;
 }
 
+/**
+ * @brief Function for depositing money to an account
+ * 
+ * @param input Amount to be deposited
+ */
 void BankAccount::deposit(double input)
 {
-    balance =+ input;
-    setTotalDeposit(input);
+    balance += input;
+    addTotalDeposit(input);
 }
 
+/**
+ * @brief Function for withdrawing money from an account
+ * 
+ * @param input Amount to be withdrawn
+ */
 void BankAccount::withdraw(double input)
 {
     if(input > balance)
@@ -22,25 +32,39 @@ void BankAccount::withdraw(double input)
     }
     else
     {
-        balance =- input;
+        balance -= input;
 
-        setTotalWithdraw(input);
+        addTotalWithdraw(input);
 
         std::cout << "Withdrew " << input << 
                      "\nNew balance: " << balance << std::endl;   
     }
 }
 
-void BankAccount::setTotalDeposit(double deposit)
+/**
+ * @brief Functino for logging total deposit amount for a specific account
+ * 
+ * @param deposit Deposit amount
+ */
+void BankAccount::addTotalDeposit(double deposit)
 {
     totalDeposit =+ deposit;
 }
 
-void BankAccount::setTotalWithdraw(double withdraw)
+/**
+ * @brief Function for logging total withdraw amount for a specific account
+ * 
+ * @param withdraw Withdraw amount
+ */
+void BankAccount::addTotalWithdraw(double withdraw)
 {
     totalWithdraw =+ withdraw;
 }
 
+/**
+ * @brief Printing the total amount of deposit and withdraw and final balance
+ * 
+ */
 void BankAccount::printAccountResults()
 {
     std::cout << "\n-===-Account #" << accountNumber << "-===-" << std::endl;

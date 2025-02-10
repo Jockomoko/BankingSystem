@@ -11,6 +11,7 @@
 class Bank
 {
 private:
+    std::mutex bankMutex;
     std::vector<int> accountIDs;
 
 public:

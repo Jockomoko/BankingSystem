@@ -1,34 +1,45 @@
+/**
+ * @file main.cpp
+ * @author Group Stockholm 2
+ * @brief Banking system with simulated user activity
+ * @version 0.1
+ * @date 2025-02-10
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include <iostream>
 #include <thread>
 #include <map>
 #include "bank.h"
+#include "account.h"
 #include <mutex>
 #include <chrono>
-#include <condition_variable>
-// #include "account.h"
 
 using namespace std::literals::chrono_literals;
 std::mutex mtx;
-std::condition_variable cv;
-bool ready = false;
 bool processed = false;
 std::string data;
-
-void client(Bank &input)
+/**
+ * @brief main thread operation for simulating account activity
+ * 
+ * @param input Input desired Bank object
+ */
+void client(Bank& input)
 {
-    std::unique_lock lk(mtx);
-    cv.wait(lk, []{return ready;});
+    std::lock_guard lk(mtx);
+    
     for (int i = 0; i < 3; i++)
     {
         std::cout << "Thread ID: " << std::this_thread::get_id() << std::endl;
-        //std::lock_guard<std::mutex> lock(mtx);
         srand(time(0));
         int id = input.getRandomID();
         int choice = 1 + rand() % 3;
-        double yeag = 0; 
+        double amount = 0; 
         
-        yeag = (double)((rand() % 10000) / 10);
-        //std::cout << "\nThread " << std::this_thread::get_id() << ": \n" << std::endl;
+        amount = (double)((rand() % 10000) / 10);
+
         std::cout << "\n-===-Account " << id << "-===-\n";
         switch (choice)
         {
@@ -36,18 +47,16 @@ void client(Bank &input)
             std::cout << "Checking balance: " << input.database[id].getBalance() << std::endl;
             break;
         case 2: // deposit
-            input.database[id].deposit(yeag);
-            std::cout << "Depositing " << yeag <<
+            input.database[id].deposit(amount);
+            std::cout << "Depositing " << amount <<
                          "\nNew balance: " << input.database[id].getBalance() << std::endl;
             break;
         case 3: // withdraw
-            input.database[id].withdraw(yeag);
+            input.database[id].withdraw(amount);
             break;
         }
         std::this_thread::sleep_for(2s);
     }
-    lk.unlock();
-    cv.notify_one();
 }
 
 int main()
@@ -61,18 +70,7 @@ int main()
 
     for (int i = 0; i < 5; i++)
     {
-        threads.emplace_back(client, Nordea);
-        data = "Example data: ";
-        {
-            std::lock_guard lk(mtx);
-            ready = true;
-            std::cout << "\nMain sign ready!\n";
-            cv.notify_one();
-        }
-        {
-            std::unique_lock lk(mtx);
-            cv.wait(lk, []{return processed;});
-        }
+        threads.emplace_back(client, std::ref(Nordea));
     }
     for (auto &thread : threads)
     {

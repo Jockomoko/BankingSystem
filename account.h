@@ -10,15 +10,15 @@ private:
     double totalWithdraw = 0.0;
 
 public:
-    BankAccount() : accountNumber(0), balance(0.0) {}
+    BankAccount() : accountNumber(0), balance(5000.0) {}
     BankAccount(int input, double balance) : accountNumber(input), balance(balance) {}
 
     void deposit(double input);
 
     void withdraw(double input);
 
-    void setTotalDeposit(double deposit);
-    void setTotalWithdraw(double withdraw);
+    void addTotalDeposit(double deposit);
+    void addTotalWithdraw(double withdraw);
 
     double getBalance();
 
