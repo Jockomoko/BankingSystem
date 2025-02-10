@@ -14,7 +14,7 @@ bool ready = false;
 bool processed = false;
 std::string data;
 
-void client(Bank input)
+void client(Bank &input)
 {
     std::unique_lock lk(mtx);
     cv.wait(lk, []{return ready;});

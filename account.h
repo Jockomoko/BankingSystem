@@ -1,7 +1,7 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
-typedef class BankAccount
+class BankAccount
 {
 private:
     double balance = 0.0;
@@ -11,7 +11,7 @@ private:
 
 public:
     BankAccount() : accountNumber(0), balance(0.0) {}
-    BankAccount(int &input, double balance) : accountNumber(input), balance(balance) {}
+    BankAccount(int input, double balance) : accountNumber(input), balance(balance) {}
 
     void deposit(double input);
 
@@ -25,6 +25,6 @@ public:
     void printAccountResults();
 
     int getNumber();
-} BankAccount;
+};
 
 #endif

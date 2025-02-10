@@ -6,8 +6,9 @@
 #include <map>
 #include <vector>
 #include <iostream>
+#include <mutex>
 
-typedef class Bank
+class Bank
 {
 private:
     std::vector<int> accountIDs;
@@ -24,6 +25,6 @@ public:
     int getRandomID();
 
     std::vector<int> getAllAccountIds();
-} Bank;
+};
 
 #endif

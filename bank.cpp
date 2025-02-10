@@ -9,7 +9,7 @@ void Bank::addAccount()
     {
         accountID = generateAccountID();
     }
-    Bank::database.emplace(accountID, BankAccount(accountID, Bank::generateAccountID()));
+    Bank::database.emplace(accountID, BankAccount(accountID, 0.0));
     Bank::accountIDs.push_back(accountID);
     std::cout << "Account Id: " << accountID << " has been added to the Database with balance: " << Bank::database[accountID].getBalance() << std::endl;
 }

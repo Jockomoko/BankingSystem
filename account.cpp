@@ -4,7 +4,7 @@
 int BankAccount::getNumber()
 {
     return accountNumber;
-};
+}
 
 void BankAccount::deposit(double input)
 {
@@ -22,7 +22,7 @@ void BankAccount::withdraw(double input)
     }
     else
     {
-        balance = -input;
+        balance =- input;
 
         setTotalWithdraw(input);
 
@@ -35,6 +35,7 @@ void BankAccount::setTotalDeposit(double deposit)
 {
     totalDeposit =+ deposit;
 }
+
 void BankAccount::setTotalWithdraw(double withdraw)
 {
     totalWithdraw =+ withdraw;
